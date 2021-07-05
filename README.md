@@ -1,51 +1,32 @@
-# docker-laravel 🐳
+# 説明
 
-![License](https://img.shields.io/github/license/ucan-lab/docker-laravel?color=f05340)
-![Stars](https://img.shields.io/github/stars/ucan-lab/docker-laravel?color=f05340)
-![Issues](https://img.shields.io/github/issues/ucan-lab/docker-laravel?color=f05340)
-![Forks](https://img.shields.io/github/forks/ucan-lab/docker-laravel?color=f05340)
+授業で使うリポジトリ。
 
-## Introduction
+簡単に Laravel6 の開発環境ができる。
 
-Build a simple laravel development environment with docker-compose.
+-   PHP8 系
+-   Laravel6 系
+-   MySQL8.0
+-   phpmyadmin
 
-## Usage
+## 使い方
+
+### STEP1
 
 ```bash
-$ git clone git@github.com:ucan-lab/docker-laravel.git
-$ cd docker-laravel
-$ make create-project # Install the latest Laravel project
-$ make install-recommend-packages # Optional
+# 注意1:けっこう時間がかかりますが仕様です。
+# 注意2:ローカルサーバー（MAMPなど）を全部停止しないとエラーがでます。
+$ git clone https://github.com/tatun55/gs-lab11-laravel6
+$ cd gs-lab11-laravel6
+$ make create-project
 ```
 
+### STEP2
+
+↓ ブラウザでアクセス
 http://localhost
+http://localhost:8080
 
-## Tips
+## 元々のリポジトリ 🐳
 
-- Read this [Makefile](https://github.com/ucan-lab/docker-laravel/blob/main/Makefile).
-- Read this [Wiki](https://github.com/ucan-lab/docker-laravel/wiki).
-
-## Container structures
-
-```bash
-├── app
-├── web
-└── db
-```
-
-### app container
-
-- Base image
-  - [php](https://hub.docker.com/_/php):8.0-fpm-buster
-  - [composer](https://hub.docker.com/_/composer):2.0
-
-### web container
-
-- Base image
-  - [nginx](https://hub.docker.com/_/nginx):1.20-alpine
-  - [node](https://hub.docker.com/_/node):16-alpine
-
-### db container
-
-- Base image
-  - [mysql/mysql-server](https://hub.docker.com/r/mysql/mysql-server):8.0
+https://github.com/ucan-lab/docker-laravel
