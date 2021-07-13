@@ -14,7 +14,10 @@ class FavoriteSiteController extends Controller
      */
     public function index()
     {
-        return 'index';
+        $favoriteSites = FavoriteSite::get();
+        return view('favorite-sites.index', [
+            'favoriteSites' => $favoriteSites,
+        ]);
     }
 
     /**
