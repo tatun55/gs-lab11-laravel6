@@ -11,6 +11,4 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('favorite-sites/create', 'FavoriteSiteController@create');

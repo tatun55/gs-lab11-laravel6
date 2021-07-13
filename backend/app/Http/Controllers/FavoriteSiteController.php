@@ -24,7 +24,7 @@ class FavoriteSiteController extends Controller
      */
     public function create()
     {
-        //
+        return 'create';
     }
 
     /**
