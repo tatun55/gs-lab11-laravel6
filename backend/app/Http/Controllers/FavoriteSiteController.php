@@ -35,7 +35,7 @@ class FavoriteSiteController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        return 'store';
     }
 
     /**
