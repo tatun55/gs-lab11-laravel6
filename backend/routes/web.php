@@ -11,6 +11,10 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('laradora/yusha/aaaa', 'YushaController@aaaa');
+Route::get('laradora/yusha/iiii', 'YushaController@iiii');
+Route::get('laradora/yusha/uuuu', 'YushaController@uuuu');
+
+// Route::get('/', function () {
+//     return view('welcome');
+// });
