@@ -14,7 +14,7 @@ class FavoriteSiteController extends Controller
      */
     public function index()
     {
-        //
+        return 'index';
     }
 
     /**
@@ -35,7 +35,11 @@ class FavoriteSiteController extends Controller
      */
     public function store(Request $request)
     {
-        return 'store';
+        $favoriteSite = new FavoriteSite();
+        $favoriteSite->title = $request->title;
+        $favoriteSite->url = $request->url;
+        $favoriteSite->save();
+        return redirect('favorite-sites');
     }
 
     /**

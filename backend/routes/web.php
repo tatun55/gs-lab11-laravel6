@@ -13,3 +13,4 @@
 
 Route::get('favorite-sites/create', 'FavoriteSiteController@create');
 Route::post('favorite-sites', 'FavoriteSiteController@store');
+Route::get('favorite-sites', 'FavoriteSiteController@index');
