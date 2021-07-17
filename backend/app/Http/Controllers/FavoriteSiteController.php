@@ -40,7 +40,7 @@ class FavoriteSiteController extends Controller
      */
     public function show(FavoriteSite $favoriteSite)
     {
-        return "show";
+        return $favoriteSite;
     }
 
     /**
