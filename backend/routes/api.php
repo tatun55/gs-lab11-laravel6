@@ -26,3 +26,5 @@ Route::get('users', function () {
     $users = User::get();
     return $users;
 });
+
+Route::apiResource('favorite-sites', 'FavoriteSiteController');

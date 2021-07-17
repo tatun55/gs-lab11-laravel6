@@ -14,7 +14,7 @@ class FavoriteSiteController extends Controller
      */
     public function index()
     {
-        //
+        return "index";
     }
 
     /**
@@ -25,7 +25,7 @@ class FavoriteSiteController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        return "store";
     }
 
     /**
@@ -36,7 +36,7 @@ class FavoriteSiteController extends Controller
      */
     public function show(FavoriteSite $favoriteSite)
     {
-        //
+        return "show";
     }
 
     /**
@@ -48,7 +48,7 @@ class FavoriteSiteController extends Controller
      */
     public function update(Request $request, FavoriteSite $favoriteSite)
     {
-        //
+        return "update";
     }
 
     /**
@@ -59,6 +59,6 @@ class FavoriteSiteController extends Controller
      */
     public function destroy(FavoriteSite $favoriteSite)
     {
-        //
+        return "destroy";
     }
 }
