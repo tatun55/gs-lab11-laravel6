@@ -52,7 +52,10 @@ class FavoriteSiteController extends Controller
      */
     public function update(Request $request, FavoriteSite $favoriteSite)
     {
-        return "update";
+        $favoriteSite->title = $request->title;
+        $favoriteSite->url = $request->url;
+        $favoriteSite->save();
+        return $favoriteSite;
     }
 
     /**
