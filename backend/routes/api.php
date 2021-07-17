@@ -28,3 +28,6 @@ Route::get('users', function () {
 });
 
 Route::apiResource('favorite-sites', 'FavoriteSiteController');
+
+Route::get('csrf', 'CsrfController@index')->name('csrf');
+Route::post('regist', 'API\Auth\RegisterController@register')->name('register');
