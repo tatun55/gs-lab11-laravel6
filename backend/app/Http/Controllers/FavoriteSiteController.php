@@ -66,6 +66,7 @@ class FavoriteSiteController extends Controller
      */
     public function destroy(FavoriteSite $favoriteSite)
     {
-        return "destroy";
+        $favoriteSite->delete();
+        return "deleted.";
     }
 }
