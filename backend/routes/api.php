@@ -31,3 +31,4 @@ Route::apiResource('favorite-sites', 'FavoriteSiteController');
 
 Route::post('regist', 'API\Auth\RegisterController@register')->name('register');
 Route::post('login', 'API\Auth\LoginController@login')->name('login');
+Route::post('logout', 'API\Auth\LoginController@logout')->name('logout');
