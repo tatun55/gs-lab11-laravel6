@@ -14,7 +14,7 @@ class FavoriteSiteController extends Controller
      */
     public function index()
     {
-        return "index";
+        return FavoriteSite::paginate(3);
     }
 
     /**
