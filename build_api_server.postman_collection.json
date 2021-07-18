@@ -44,6 +44,17 @@
 				},
 				{
 					"name": "index",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
 					},
@@ -191,11 +202,16 @@
 								},
 								{
 									"key": "email",
-									"value": "aaa@gmail.com",
+									"value": "aaa002@gmail.com",
 									"type": "text"
 								},
 								{
 									"key": "password",
+									"value": "password",
+									"type": "text"
+								},
+								{
+									"key": "password_confirmation",
 									"value": "password",
 									"type": "text"
 								}
@@ -217,6 +233,26 @@
 				},
 				{
 					"name": "login",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"request": {
 						"method": "POST",
 						"header": [],
@@ -272,7 +308,53 @@
 					},
 					"response": []
 				}
+			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"var xsrfCookie = pm.cookies.get('XSRF-TOKEN');",
+							"pm.environment.set(\"xsrf-token\", xsrfCookie);"
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
 			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					"pm.request.headers.upsert({key: \"Accept\", value: \"application/json\"});",
+					"pm.request.headers.add({",
+					"    key: \"X-XSRF-TOKEN\",",
+					"    value: pm.environment.get(\"xsrf-token\")",
+					"});"
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					"var xsrfCookie = pm.cookies.get('XSRF-TOKEN');",
+					"pm.environment.set(\"xsrf-token\", xsrfCookie);"
+				]
+			}
 		}
 	]
 }
