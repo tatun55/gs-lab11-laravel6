@@ -22,6 +22,7 @@ class CreateBooksTable extends Migration
             $table->string('item_img');
             $table->datetime('published');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

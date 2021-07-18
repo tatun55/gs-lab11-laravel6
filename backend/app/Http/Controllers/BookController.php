@@ -23,6 +23,7 @@ class BookController extends Controller
     {
         $books = Book::where('user_id', Auth::user()->id)
             ->orderBy('created_at', 'asc')
+            // ->withTrashed()
             ->paginate(3);
         return view('books', [
             'books' => $books
