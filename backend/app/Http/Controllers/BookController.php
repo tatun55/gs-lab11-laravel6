@@ -53,12 +53,12 @@ class BookController extends Controller
                 ->withInput()
                 ->withErrors($validator);
         }
-        $book->user_id = Auth::user()->id;
-        $book->item_name   = $request->item_name;
-        $book->item_number = $request->item_number;
-        $book->item_amount = $request->item_amount;
-        $book->published   = $request->published;
-        $book->save();
+
+        $request->merge([
+            'user_id' => Auth::user()->id,
+        ]);
+        $book->fill($request->all())->save();
+
         return redirect('/');
     }
 
