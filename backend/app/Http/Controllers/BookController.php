@@ -89,15 +89,11 @@ class BookController extends Controller
             $filename = "";
         }
 
-        // 本作成処理...
-        $books = new Book;
-        $books->user_id = Auth::user()->id;
-        $books->item_name = $request->item_name;
-        $books->item_number = $request->item_number;
-        $books->item_amount = $request->item_amount;
-        $books->item_img = $filename;
-        $books->published = $request->published;
-        $books->save();
+        $request->merge([
+            'item_img' => $filename,
+            'user_id' => Auth::user()->id,
+        ]);
+        Book::create($request->all());
 
         return redirect('/');
     }
