@@ -53,7 +53,7 @@ class BookController extends Controller
 
         //バリデーション:エラー
         if ($validator->fails()) {
-            return redirect('/')
+            return back()
                 ->withInput()
                 ->withErrors($validator);
         }

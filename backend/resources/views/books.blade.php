@@ -24,8 +24,6 @@
                 <label for="amount" class="col-sm-3 control-label">金額</label>
                 <input type="text" name="item_amount" class="form-control">
             </div>
-        </div>
-        <div class="form-row">
             <div class="form-group col-md-6">
                 <label for="number" class="col-sm-3 control-label">数</label>
                 <input type="text" name="item_number" class="form-control">
@@ -34,6 +32,14 @@
             <div class="form-group col-md-6">
                 <label for="published" class="col-sm-3 control-label">公開日</label>
                 <input type="date" name="published" class="form-control">
+            </div>
+            <div class="form-group col-md-6">
+                <label for="item_category" class="col-sm-3 control-label">カテゴリ</label>
+                <select class="form-control" name="item_category">
+                    <option value="1">文芸・評論</option>
+                    <option value="2">ノンフィクション</option>
+                    <option value="3">ビジネス・経済</option>
+                </select>
             </div>
         </div>
 
