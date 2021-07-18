@@ -11,8 +11,7 @@ class UserProfileController extends Controller
     public function index()
     {
         $user = auth()->user();
-        $userProfile = UserProfile::where('user_id', $user->id)->first();
-        return view('me', compact('user', 'userProfile'));
+        return view('me', compact('user'));
     }
 
     public function upsert(Request $request, User $user)

@@ -19,14 +19,14 @@
                     <label for="pref">都道府県</label>
                     <select class="form-control" name="pref">
                         @foreach(config('const.pref') as $i => $val)
-                            <option value="{{ $i }}" {{ $i !== (old('pref') ?: @$userProfile->pref) ?: "selected" }}>{{ $val }}</option>
+                            <option value="{{ $i }}" {{ $i !== (old('pref') ?: @$user->profile->pref) ?: "selected" }}>{{ $val }}</option>
                         @endforeach
                     </select>
                 </div>
 
                 <div class="form-group">
                     <label for="">誕生日</label>
-                    <input type="date" name="birthday" class="form-control" value="{{ old('birthday') ?: @$userProfile->birthday }}">
+                    <input type="date" name="birthday" class="form-control" value="{{ old('birthday') ?: @$user->profile->birthday }}">
                 </div>
 
                 <div class="well well-sm">
