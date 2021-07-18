@@ -7,8 +7,10 @@ use Illuminate\Http\Request;
 
 //使うClassを宣言:自分で追加
 use App\Book;   //Bookモデルを使えるようにする
+use App\Stock;
 use Validator;  //バリデーションを使えるようにする
 use Auth;       //認証モデルを使用する
+use Illuminate\Support\Facades\DB;
 
 class BookController extends Controller
 {
@@ -48,6 +50,7 @@ class BookController extends Controller
             'item_amount' => 'required|min:0|max:6',
             'published' => 'required',
         ]);
+
         //バリデーション:エラー
         if ($validator->fails()) {
             return redirect('/')
@@ -73,6 +76,7 @@ class BookController extends Controller
             'item_amount' => 'required|max:6',
             'published' => 'required',
         ]);
+
         //バリデーション:エラー
         if ($validator->fails()) {
             return redirect('/')
@@ -94,7 +98,18 @@ class BookController extends Controller
             'item_img' => $filename,
             'user_id' => Auth::user()->id,
         ]);
-        Book::create($request->all());
+
+        DB::beginTransaction();
+        try {
+            Book::create($request->all());
+            Stock::find(1)->decrement('num', $request->item_number);
+            DB::commit();
+        } catch (\Exception $e) {
+            DB::rollback();
+            return redirect('/')
+                ->withInput()
+                ->withErrors(array('stocks' => "在庫が足りません"));
+        }
 
         return redirect('/');
     }
