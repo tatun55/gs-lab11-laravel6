@@ -10,7 +10,7 @@ use App\Book;   //Bookモデルを使えるようにする
 use Validator;  //バリデーションを使えるようにする
 use Auth;       //認証モデルを使用する
 
-class BooksController extends Controller
+class BookController extends Controller
 {
     // //コンストラクタ(このクラスが呼ばれたら最初に処理をする)
     // public function __construct()
@@ -30,21 +30,18 @@ class BooksController extends Controller
     }
 
     //更新画面
-    public function edit($book_id)
+    public function edit(Book $book)
     {
-        $books = Book::where('user_id', Auth::user()->id)->findOrFail($book_id);
-        // $books = Book::where('user_id', Auth::user()->id)->find($book_id);
         return view('booksedit', [
-            'book' => $books
+            'book' => $book
         ]);
     }
 
     //更新
-    public function update(Request $request)
+    public function update(Request $request, Book $book)
     {
         //バリデーション
         $validator = Validator::make($request->all(), [
-            'id' => 'required',
             'item_name' => 'required|min:3|max:255',
             'item_number' => 'required|min:1|max:3',
             'item_amount' => 'required|min:0|max:6',
@@ -56,13 +53,12 @@ class BooksController extends Controller
                 ->withInput()
                 ->withErrors($validator);
         }
-        $books = Book::find($request->id);
-        $books->user_id = Auth::user()->id;
-        $books->item_name   = $request->item_name;
-        $books->item_number = $request->item_number;
-        $books->item_amount = $request->item_amount;
-        $books->published   = $request->published;
-        $books->save();
+        $book->user_id = Auth::user()->id;
+        $book->item_name   = $request->item_name;
+        $book->item_number = $request->item_number;
+        $book->item_amount = $request->item_amount;
+        $book->published   = $request->published;
+        $book->save();
         return redirect('/');
     }
 
