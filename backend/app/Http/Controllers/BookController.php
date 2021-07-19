@@ -24,7 +24,7 @@ class BookController extends Controller
             ->orderBy('created_at', 'asc')
             // ->withTrashed()
             ->withCount('comments')
-            ->paginate(3);
+            ->paginate(10);
         $tags = Tag::all();
         return view('books', [
             'books' => $books,
@@ -78,10 +78,14 @@ class BookController extends Controller
     {
         //バリデーション
         $validator = Validator::make($request->all(), [
-            'item_name' => 'required|min:3|max:255',
-            'item_number' => 'required|min:1|max:3',
-            'item_amount' => 'required|max:6',
-            'published' => 'required',
+            'item_name' => 'required|string|max:255',
+            'item_number' => 'required|integer|max:500',
+            'item_amount' => 'required|integer|between:100,99999',
+            'item_category' => 'required|integer|between:1,3',
+            'item_img' => 'file|image',
+            'tags' => 'array',
+            'tags.*' => 'integer|between:1,3',
+            'published' => 'required|date',
         ]);
 
         //バリデーション:エラー
@@ -101,14 +105,14 @@ class BookController extends Controller
             $filename = "";
         }
 
-        $request->merge([
+        $requestAll = array_merge($request->except('item_img'), [
             'item_img' => $filename,
             'user_id' => Auth::user()->id,
         ]);
 
         DB::beginTransaction();
         try {
-            $book = Book::create($request->all());
+            $book = Book::create($requestAll);
             $book->tags()->sync($request->tags);
             Stock::find(1)->decrement('num', $request->item_number);
             DB::commit();

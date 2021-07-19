@@ -21,7 +21,7 @@ class CreateBooksTable extends Migration
             $table->integer('item_amount');
             $table->string('item_img');
             $table->unsignedTinyInteger('item_category');
-            $table->datetime('published');
+            $table->date('published');
             $table->timestamps();
             $table->softDeletes();
         });

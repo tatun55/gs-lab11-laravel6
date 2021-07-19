@@ -32,7 +32,7 @@
             <!-- published -->
             <div class="form-group">
                 <label for="published">published</label>
-                <input type="datetime" id="published" name="published" class="form-control" value="{{ old('published') ?: $book->published }}" />
+                <input type="date" id="published" name="published" class="form-control" value="{{ old('published') ?: $book->published }}" />
             </div>
             <!--/ published -->
             <div class="form-group">

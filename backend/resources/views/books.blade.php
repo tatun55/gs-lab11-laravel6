@@ -53,7 +53,8 @@
 
         <!-- file 追加 -->
         <div class="form-row mb-3">
-            <div class="col-sm-6"> <label>画像</label>
+            <div class="col-sm-6">
+                <label>画像</label>
                 <input type="file" name="item_img">
             </div>
         </div>
