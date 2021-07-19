@@ -11,6 +11,7 @@ use App\BookComment;
 use App\Stock;
 use Validator;  //バリデーションを使えるようにする
 use Auth;       //認証モデルを使用する
+use Illuminate\Database\Query\Builder;
 use Illuminate\Support\Facades\DB;
 
 class BookController extends Controller
@@ -18,19 +19,23 @@ class BookController extends Controller
     //本ダッシュボード表示
     public function index()
     {
-
-
+        $columns = [
+            'books.*',
+            'comment_count' => function (Builder $query) {
+                $query
+                    ->selectRaw('count(*)')
+                    ->from('book_comments')
+                    ->whereRaw('book_comments.book_id = books.id')
+                    ->groupBy('book_id');
+            },
+        ];
         $books = Book::where('user_id', Auth::user()->id)
             ->orderBy('created_at', 'asc')
             // ->withTrashed()
+            ->select($columns)
             ->paginate(3);
-        $bookCommentCounts = [];
-        foreach ($books as $book) {
-            $bookCommentCounts[] = BookComment::where('book_id', $book->id)->count();
-        }
         return view('books', [
             'books' => $books,
-            'bookCommentCounts' => $bookCommentCounts,
         ]);
     }
 

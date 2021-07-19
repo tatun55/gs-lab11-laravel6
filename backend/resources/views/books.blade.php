@@ -79,7 +79,7 @@
                 </thead>
                 <!-- テーブル本体 -->
                 <tbody>
-                    @foreach($books as $i => $book)
+                    @foreach($books as $book)
                         <tr>
                             <!-- 本タイトル -->
                             <td class="table-text">
@@ -87,7 +87,7 @@
                                 <div> <img src="upload/{{ $book->item_img }}" width="100"></div>
                             </td>
                             <td class="table-text">
-                                <div>コメント数：{{ $bookCommentCounts[$i] }}</div>
+                                <div>コメント数：{{ $book->comment_count }}</div>
                             </td>
 
                             <!-- 本: 更新ボタン -->
