@@ -48,23 +48,8 @@ class BookController extends Controller
     }
 
     //更新
-    public function update(Request $request, Book $book)
+    public function update(BookRequest $request, Book $book)
     {
-        //バリデーション
-        $validator = Validator::make($request->all(), [
-            'item_name' => 'required|min:3|max:255',
-            'item_number' => 'required|min:1|max:3',
-            'item_amount' => 'required|min:0|max:6',
-            'published' => 'required',
-        ]);
-
-        //バリデーション:エラー
-        if ($validator->fails()) {
-            return back()
-                ->withInput()
-                ->withErrors($validator);
-        }
-
         $request->merge([
             'user_id' => Auth::user()->id,
         ]);
