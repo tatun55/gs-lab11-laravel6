@@ -53,6 +53,48 @@
             </div>
             <!--/ Saveボタン/Backボタン -->
         </form>
+
+        <!-- comments -->
+        <table class="table table-striped task-table mt-4">
+            <thead>
+                <th>コメント一覧</th>
+                <th>&nbsp;</th>
+            </thead>
+            <tbody>
+                @if(isset($bookComments) && $bookComments->isEmpty())
+                    @foreach($bookComments as $comment)
+                        <tr>
+                            <td class="table-text">
+                                <p>{{ $comment->body }}</p>
+                            </td>
+                            <td>
+                                <form action="{{ url("comments/{$comment->id}") }}" method="POST">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="btn btn-danger">
+                                        削除
+                                    </button>
+                                </form>
+                            </td>
+                        </tr>
+                    @endforeach
+                @endif
+            </tbody>
+        </table>
+        <form action="{{ url("books/{$book->id}/comments" ) }}" method="POST">
+            @csrf
+            <div class="form-group">
+                <label for="comment">新規コメント</label>
+                <input type="text" id="comment" name="comment" class="form-control" />
+            </div>
+            <div>
+                <button type="submit" class="btn btn-primary">コメント投稿</button>
+                <a class="btn btn-link" href="{{ url('/') }}">
+                    Back
+                </a>
+            </div>
+        </form>
+        <!--/ comments -->
     </div>
 </div>
 @endsection
