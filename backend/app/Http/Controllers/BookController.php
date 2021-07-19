@@ -19,20 +19,10 @@ class BookController extends Controller
     //本ダッシュボード表示
     public function index()
     {
-        $columns = [
-            'books.*',
-            'comment_count' => function (Builder $query) {
-                $query
-                    ->selectRaw('count(*)')
-                    ->from('book_comments')
-                    ->whereRaw('book_comments.book_id = books.id')
-                    ->groupBy('book_id');
-            },
-        ];
         $books = Book::where('user_id', Auth::user()->id)
             ->orderBy('created_at', 'asc')
             // ->withTrashed()
-            ->select($columns)
+            ->withCount('comments')
             ->paginate(3);
         return view('books', [
             'books' => $books,

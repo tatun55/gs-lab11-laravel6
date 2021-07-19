@@ -87,7 +87,7 @@
                                 <div> <img src="upload/{{ $book->item_img }}" width="100"></div>
                             </td>
                             <td class="table-text">
-                                <div>コメント数：{{ $book->comment_count }}</div>
+                                <div>コメント数：{{ $book->comments_count }}</div>
                             </td>
 
                             <!-- 本: 更新ボタン -->

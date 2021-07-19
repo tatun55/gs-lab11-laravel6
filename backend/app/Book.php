@@ -15,4 +15,9 @@ class Book extends Model
         2 => "ノンフィクション",
         3 => "ビジネス・経済",
     ];
+
+    public function comments()
+    {
+        return $this->hasMany('App\BookComment');
+    }
 }
