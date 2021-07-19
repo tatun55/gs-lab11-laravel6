@@ -15,21 +15,22 @@ use Illuminate\Support\Facades\DB;
 
 class BookController extends Controller
 {
-    // //コンストラクタ(このクラスが呼ばれたら最初に処理をする)
-    // public function __construct()
-    // {
-    //     $this->middleware('auth');
-    // }
-
     //本ダッシュボード表示
     public function index()
     {
+
+
         $books = Book::where('user_id', Auth::user()->id)
             ->orderBy('created_at', 'asc')
             // ->withTrashed()
             ->paginate(3);
+        $bookCommentCounts = [];
+        foreach ($books as $book) {
+            $bookCommentCounts[] = BookComment::where('book_id', $book->id)->count();
+        }
         return view('books', [
-            'books' => $books
+            'books' => $books,
+            'bookCommentCounts' => $bookCommentCounts,
         ]);
     }
 
