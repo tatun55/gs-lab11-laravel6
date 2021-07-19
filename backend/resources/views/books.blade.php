@@ -41,6 +41,14 @@
                     <option value="3">ビジネス・経済</option>
                 </select>
             </div>
+            <div class="form-group col-md-6">
+                <p class="col-sm-3 control-label">タグ</p>
+                @foreach($tags as $tag)
+                    <label class="col-sm-3 control-label">
+                        <input type="checkbox" name="tags[]" value="{{ $tag->id }}">{{ $tag->name }}
+                    </label>
+                @endforeach
+            </div>
         </div>
 
         <!-- file 追加 -->

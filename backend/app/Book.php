@@ -20,4 +20,9 @@ class Book extends Model
     {
         return $this->hasMany('App\BookComment');
     }
+
+    public function tags()
+    {
+        return $this->belongsToMany('App\Tag');
+    }
 }

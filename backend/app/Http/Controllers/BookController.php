@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use App\Book;   //Bookモデルを使えるようにする
 use App\BookComment;
 use App\Stock;
+use App\Tag;
 use Validator;  //バリデーションを使えるようにする
 use Auth;       //認証モデルを使用する
 use Illuminate\Database\Query\Builder;
@@ -24,8 +25,10 @@ class BookController extends Controller
             // ->withTrashed()
             ->withCount('comments')
             ->paginate(3);
+        $tags = Tag::all();
         return view('books', [
             'books' => $books,
+            'tags' => $tags,
         ]);
     }
 
@@ -33,9 +36,13 @@ class BookController extends Controller
     public function edit(Book $book)
     {
         $bookComments = BookComment::where('book_id', $book->id)->get();
+        $tags = Tag::all();
+        $checkedTags = $book->tags()->pluck('tags.id')->toArray();
         return view('booksedit', [
             'book' => $book,
-            'bookComments' => $bookComments
+            'bookComments' => $bookComments,
+            'tags' => $tags,
+            'checkedTags' => $checkedTags,
         ]);
     }
 
@@ -61,8 +68,9 @@ class BookController extends Controller
             'user_id' => Auth::user()->id,
         ]);
         $book->fill($request->all())->save();
+        $book->tags()->sync($request->tags);
 
-        return redirect('/');
+        return back();
     }
 
     //登録
@@ -100,14 +108,15 @@ class BookController extends Controller
 
         DB::beginTransaction();
         try {
-            Book::create($request->all());
+            $book = Book::create($request->all());
+            $book->tags()->sync($request->tags);
             Stock::find(1)->decrement('num', $request->item_number);
             DB::commit();
         } catch (\Exception $e) {
             DB::rollback();
             return redirect('/')
                 ->withInput()
-                ->withErrors(array('stocks' => "在庫が足りません"));
+                ->withErrors(array($e->getMessage()));
         }
 
         return redirect('/');

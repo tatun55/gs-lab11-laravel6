@@ -43,6 +43,14 @@
                     @endforeach
                 </select>
             </div>
+            <div class="form-group">
+                <p class="col-sm-3 control-label">タグ</p>
+                @foreach($tags as $tag)
+                    <label class="col-sm-3 control-label">
+                        <input type="checkbox" name="tags[]" value="{{ $tag->id }}" {{ in_array($tag->id,$checkedTags) ? 'checked' : '' }}>{{ $tag->name }}
+                    </label>
+                @endforeach
+            </div>
 
             <!-- Saveボタン/Backボタン -->
             <div class="well well-sm">
