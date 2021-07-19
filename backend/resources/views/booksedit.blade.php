@@ -61,7 +61,7 @@
                 <th>&nbsp;</th>
             </thead>
             <tbody>
-                @if(isset($bookComments) && $bookComments->isEmpty())
+                @if(isset($bookComments) && !$bookComments->isEmpty())
                     @foreach($bookComments as $comment)
                         <tr>
                             <td class="table-text">
@@ -85,7 +85,7 @@
             @csrf
             <div class="form-group">
                 <label for="comment">新規コメント</label>
-                <input type="text" id="comment" name="comment" class="form-control" />
+                <input type="text" name="body" class="form-control" />
             </div>
             <div>
                 <button type="submit" class="btn btn-primary">コメント投稿</button>

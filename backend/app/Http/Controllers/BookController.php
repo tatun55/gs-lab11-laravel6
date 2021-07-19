@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 
 //使うClassを宣言:自分で追加
 use App\Book;   //Bookモデルを使えるようにする
+use App\BookComment;
 use App\Stock;
 use Validator;  //バリデーションを使えるようにする
 use Auth;       //認証モデルを使用する
@@ -35,8 +36,10 @@ class BookController extends Controller
     //更新画面
     public function edit(Book $book)
     {
+        $bookComments = BookComment::where('book_id', $book->id)->get();
         return view('booksedit', [
-            'book' => $book
+            'book' => $book,
+            'bookComments' => $bookComments
         ]);
     }
 

@@ -17,17 +17,22 @@ class BookCommentController extends Controller
      */
     public function store(Request $request, Book $book)
     {
-        return "store";
+        BookComment::create([
+            'book_id' => $book->id,
+            'body' => $request->body,
+        ]);
+        return back();
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\BookComment  $bookComment
+     * @param  \App\BookComment  $comment
      * @return \Illuminate\Http\Response
      */
-    public function destroy(BookComment $bookComment)
+    public function destroy(BookComment $comment)
     {
-        return "destroy";
+        $comment->delete();
+        return back();
     }
 }

@@ -15,6 +15,9 @@ class CreateBookCommentsTable extends Migration
     {
         Schema::create('book_comments', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->unsignedBigInteger('book_id');
+            $table->foreign('book_id')->references('id')->on('books')->onDelete('cascade');
+            $table->string('body');
             $table->timestamps();
         });
     }
