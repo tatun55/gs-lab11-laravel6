@@ -25,14 +25,14 @@ class BookRequest extends FormRequest
         switch ($this->route()->getName()) {
             case 'books.store':
                 $storeRules = [
-                    'item_name' => 'required|string|unique:books|between:3,255',
+                    'item_name' => 'required|string|alpha|unique:books|between:3,255',
                     'item_img' => 'file|image',
                 ];
                 $rules = array_merge($rules, $storeRules);
                 break;
             case 'books.update':
                 $updateRules = [
-                    'item_name' => "required|string|unique:books,item_name,{$this->id}|between:3,255",
+                    'item_name' => "required|string|alpha|unique:books,item_name,{$this->id}|between:3,255",
                 ];
                 $rules = array_merge($rules, $updateRules);
                 break;
