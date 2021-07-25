@@ -28,5 +28,8 @@ class AppServiceProvider extends ServiceProvider
         Validator::resolver(function ($translator, $data, $rules, $messages, $attributes) {
             return new CustomValidator($translator, $data, $rules, $messages, $attributes);
         });
+        Validator::extend('katakana', function ($attribute, $value, $parameters, $validator) {
+            return preg_match('/^[ァ-ヾー]+$/u', $value);
+        });
     }
 }

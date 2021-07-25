@@ -16,7 +16,7 @@ class UserProfileRequest extends FormRequest
         return [
             'pref' => 'required|integer|between:1,47',
             'birthday' => 'required|date',
-            'hurigana' => 'required|string',
+            'hurigana' => 'required|string|katakana',
         ];
     }
 }
