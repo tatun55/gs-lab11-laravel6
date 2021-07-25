@@ -14,7 +14,7 @@ class BookRequest extends FormRequest
     public function rules()
     {
         $rules = [
-            'item_name' => 'required|string|max:255',
+            'item_name' => 'required|string|unique:books|between:3,255',
             'item_number' => 'required|integer|max:500',
             'item_amount' => 'required|integer|between:100,99999',
             'item_category' => 'required|integer|between:1,3',
