@@ -14,7 +14,6 @@ class BookRequest extends FormRequest
     public function rules()
     {
         $rules = [
-            'item_name' => 'required|string|unique:books|between:3,255',
             'item_number' => 'required|integer|max:500',
             'item_amount' => 'required|integer|between:100,99999',
             'item_category' => 'required|integer|between:1,3',
@@ -26,11 +25,16 @@ class BookRequest extends FormRequest
         switch ($this->route()->getName()) {
             case 'books.store':
                 $storeRules = [
+                    'item_name' => 'required|string|unique:books|between:3,255',
                     'item_img' => 'file|image',
                 ];
                 $rules = array_merge($rules, $storeRules);
                 break;
             case 'books.update':
+                $updateRules = [
+                    'item_name' => "required|string|unique:books,item_name,{$this->id}|between:3,255",
+                ];
+                $rules = array_merge($rules, $updateRules);
                 break;
         }
 
