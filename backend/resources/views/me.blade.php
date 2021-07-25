@@ -25,8 +25,13 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="">誕生日</label>
+                    <label for="birthday">誕生日</label>
                     <input type="date" name="birthday" class="form-control" value="{{ old('birthday') ?: @$user->profile->birthday }}">
+                </div>
+
+                <div class="form-group">
+                    <label for="hurigana">フリガナ</label>
+                    <input type="text" name="hurigana" class="form-control" value="{{ old('hurigana') ?: @$user->profile->hurigana }}">
                 </div>
 
                 <div class="well well-sm">

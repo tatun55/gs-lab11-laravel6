@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\UserProfileRequest;
 use App\User;
 use App\UserProfile;
-use Illuminate\Http\Request;
 
 class UserProfileController extends Controller
 {
@@ -14,7 +14,7 @@ class UserProfileController extends Controller
         return view('me', compact('user'));
     }
 
-    public function upsert(Request $request, User $user)
+    public function upsert(UserProfileRequest $request, User $user)
     {
         UserProfile::updateOrCreate(
             [

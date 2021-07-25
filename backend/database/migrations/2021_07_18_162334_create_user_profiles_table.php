@@ -19,6 +19,7 @@ class CreateUserProfilesTable extends Migration
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->unsignedTinyInteger('pref');
             $table->date('birthday');
+            $table->string('hurigana');
             $table->timestamps();
         });
     }
