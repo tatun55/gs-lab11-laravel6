@@ -123,11 +123,23 @@ return [
     'uploaded'             => ':attributeのアップロードに失敗しました。',
     'url'                  => ':attributeは、有効なURL形式で指定してください。',
     'uuid'                 => ':attributeは、有効なUUIDでなければなりません。',
+    'katakana'             => ':attributeは、カタカナでなければなりません。',
     'custom'               => [
         'attribute-name' => [
             'rule-name' => 'custom-message',
         ],
     ],
-    'attributes'           => [],
+    'attributes'           => [
+        'item_name' => 'タイトル',
+        'item_image' => '画像',
+        'item_number' => '数量',
+        'item_amount' => '金額',
+        'item_category' => 'カテゴリ',
+        'tags' => 'タグ',
+        'published' => '公開日',
+        'pref' => '都道府県',
+        'birthday' => '誕生日',
+        'hurigana' => 'フリガナ',
+    ],
 
 ];
