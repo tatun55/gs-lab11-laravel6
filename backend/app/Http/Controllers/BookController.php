@@ -13,6 +13,7 @@ use App\Stock;
 use App\Tag;
 use Validator;  //バリデーションを使えるようにする
 use Auth;       //認証モデルを使用する
+use Carbon\Carbon;
 use Illuminate\Database\Query\Builder;
 use Illuminate\Support\Facades\DB;
 
@@ -50,6 +51,31 @@ class BookController extends Controller
 
         echo ("paginateの例　数量が10個の本一覧を3冊ごとにパジネーションしたもの");
         $books = Book::where('item_number', 10)->paginate(3);
+        dump($books);
+
+        echo ("<h2>練習３：Where句</h2>");
+
+        echo ("数量が5個以上");
+        $books = Book::where('item_number', '>', 5)->get()->toArray();
+        dump($books);
+
+        echo ("数量が5個以上で、金額が1000円以下");
+        $books = Book::where('item_number', '>', 5)
+            ->where('item_amount', '<', 1000)
+            ->get()
+            ->toArray();
+        dump($books);
+
+        echo ("タイトルに`ジョバンニ`が含まれる");
+        $books = Book::where('item_name', 'like', '%ジョバンニ%')
+            ->get()
+            ->toArray();
+        dump($books);
+
+        echo ("公開日が過去10日以内");
+        $books = Book::whereDate('published', '>', Carbon::today()->subDays(10))
+            ->get()
+            ->toArray();
         dump($books);
 
         exit;
