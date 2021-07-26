@@ -74,7 +74,7 @@ class BookController extends Controller
         }
 
         $requestAll = array_merge($request->except('item_img'), [
-            'item_img' => $filename,
+            'item_img' => url("./upload/{$filename}"),
             'user_id' => Auth::user()->id,
         ]);
 

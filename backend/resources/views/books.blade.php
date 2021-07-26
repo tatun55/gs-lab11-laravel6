@@ -93,7 +93,7 @@
                             <!-- 本タイトル -->
                             <td class="table-text">
                                 <div>{{ $book->item_name }}</div>
-                                <div> <img src="upload/{{ $book->item_img }}" width="100"></div>
+                                <div> <img src="{{ $book->item_img }}" width="100"></div>
                             </td>
                             <td class="table-text">
                                 <div>コメント数：{{ $book->comments_count }}</div>
