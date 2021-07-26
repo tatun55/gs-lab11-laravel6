@@ -28,6 +28,12 @@ class BookController extends Controller
         echo ("自分が登録した本データ（Eloquent Collection）を取得");
         Book::where('user_id', Auth::user()->id)->get()->dump();
 
+        echo ("（Eloquentを使わないバージョン）自分が登録した本データを取得するクエリ");
+        DB::table('books')->where('user_id', Auth::user()->id)->dump();
+
+        echo ("（Eloquentを使わないバージョン）自分が登録した本データ（Eloquent Collection）を取得");
+        DB::table('books')->where('user_id', Auth::user()->id)->get()->dump();
+
         exit;
     }
 
