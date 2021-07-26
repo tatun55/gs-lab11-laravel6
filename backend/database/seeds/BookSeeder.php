@@ -15,22 +15,12 @@ class BookSeeder extends Seeder
      */
     public function run()
     {
-        $qt = 300;
-        $books = [];
-        $tags = [];
-        $bookComments = [];
-        for ($i = 1; $i <= $qt; $i++) {
-            $book = [
-                'user_id' => 1,
-                'item_name' => "Book Title No.{$i}",
-                'item_amount' => rand(100, 9999),
-                'item_number' => rand(1, 10),
-                'item_img' => "https://dummyimage.com/300x300/cccccc/ffffff&text=ダミー画像",
-                'published' => Carbon::today()->subDays(rand(1, 100))->format("Y-m-d"),
-                'item_category' => rand(1, 3),
-            ];
-            $books[] = $book;
+        factory(App\Book::class, 300)->create([
+            'user_id' => 1,
+        ]);
 
+        $tags = [];
+        for ($i = 1; $i <= 300; $i++) {
             $tagIds = Arr::random(range(1, 3), rand(0, 3));
             foreach ($tagIds as $id) {
                 $tags[] = [
@@ -38,15 +28,9 @@ class BookSeeder extends Seeder
                     'tag_id' => $id,
                 ];
             }
-            for ($j = 1; $j < rand(0, 10); $j++) {
-                $bookComments[] = [
-                    'book_id' => $i,
-                    'body' => "Commend No.{$j}",
-                ];
-            }
         }
-        Book::insert($books);
         DB::table('book_tag')->insert($tags);
-        BookComment::insert($bookComments);
+
+        factory(App\BookComment::class, 1000)->create();
     }
 }
