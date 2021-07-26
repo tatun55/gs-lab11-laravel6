@@ -22,6 +22,7 @@ class BookController extends Controller
     {
         echo ("<h1>これはEloquentなクエリビルダの練習です。</h1>");
 
+        echo ("<h2>練習１：クエリビルダと結果取得メソッド</h2>");
         echo ("自分が登録した本データを取得するクエリ");
         Book::where('user_id', Auth::user()->id)->dump();
 
@@ -33,6 +34,23 @@ class BookController extends Controller
 
         echo ("（Eloquentを使わないバージョン）自分が登録した本データ（Eloquent Collection）を取得");
         DB::table('books')->where('user_id', Auth::user()->id)->get()->dump();
+
+        echo ("<h2>練習２：結果取得メソッドの具体例</h2>");
+        echo ("findの例　IDが100の本を取得");
+        $book = Book::find(100);
+        dump($book);
+
+        echo ("getの例　数量が10個の本一覧");
+        $books = Book::where('item_number', 10)->get();
+        dump($books);
+
+        echo ("firstの例　数量が10個の本、最初の一冊");
+        $book = Book::where('item_number', 10)->first();
+        dump($book);
+
+        echo ("paginateの例　数量が10個の本一覧を3冊ごとにパジネーションしたもの");
+        $books = Book::where('item_number', 10)->paginate(3);
+        dump($books);
 
         exit;
     }
