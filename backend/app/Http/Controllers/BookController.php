@@ -18,6 +18,19 @@ use Illuminate\Support\Facades\DB;
 
 class BookController extends Controller
 {
+    public function practice()
+    {
+        echo ("<h1>これはEloquentなクエリビルダの練習です。</h1>");
+
+        echo ("自分が登録した本データを取得するクエリ");
+        Book::where('user_id', Auth::user()->id)->dump();
+
+        echo ("自分が登録した本データ（Eloquent Collection）を取得");
+        Book::where('user_id', Auth::user()->id)->get()->dump();
+
+        exit;
+    }
+
     //本ダッシュボード表示
     public function index()
     {
