@@ -15,8 +15,11 @@ class BookSeeder extends Seeder
      */
     public function run()
     {
+        $qt = 300;
         $books = [];
-        for ($i = 1; $i <= 300; $i++) {
+        $tags = [];
+        $bookComments = [];
+        for ($i = 1; $i <= $qt; $i++) {
             $book = [
                 'user_id' => 1,
                 'item_name' => "Book Title No.{$i}",
@@ -27,7 +30,23 @@ class BookSeeder extends Seeder
                 'item_category' => rand(1, 3),
             ];
             $books[] = $book;
+
+            $tagIds = Arr::random(range(1, 3), rand(0, 3));
+            foreach ($tagIds as $id) {
+                $tags[] = [
+                    'book_id' => $i,
+                    'tag_id' => $id,
+                ];
+            }
+            for ($j = 1; $j < rand(0, 10); $j++) {
+                $bookComments[] = [
+                    'book_id' => $i,
+                    'body' => "Commend No.{$j}",
+                ];
+            }
         }
         Book::insert($books);
+        DB::table('book_tag')->insert($tags);
+        BookComment::insert($bookComments);
     }
 }
