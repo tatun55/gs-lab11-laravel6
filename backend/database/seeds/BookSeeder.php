@@ -4,6 +4,7 @@ use App\Book;
 use App\BookComment;
 use Carbon\Carbon;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Arr;
 
 class BookSeeder extends Seeder
 {
@@ -14,37 +15,19 @@ class BookSeeder extends Seeder
      */
     public function run()
     {
-        Book::create([
-            'user_id' => 1,
-            'item_name' => 'プロご近所への道',
-            'item_amount' => 100,
-            'item_number' => 3,
-            'item_img' => "",
-            'published' => Carbon::today(),
-            'item_category' => 2,
-        ]);
-        Book::create([
-            'user_id' => 1,
-            'item_name' => 'プロご近所への道2',
-            'item_amount' => 100,
-            'item_number' => 3,
-            'item_img' => "",
-            'published' => Carbon::today(),
-            'item_category' => 2,
-        ]);
-        Book::create([
-            'user_id' => 1,
-            'item_name' => 'プロご近所への道3',
-            'item_amount' => 100,
-            'item_number' => 3,
-            'item_img' => "",
-            'published' => Carbon::today(),
-            'item_category' => 2,
-        ]);
-        for ($i = 1; $i <= 3; $i++) {
-            factory(App\BookComment::class, rand(10, 100))->create([
-                'book_id' => $i,
-            ]);
+        $books = [];
+        for ($i = 1; $i <= 300; $i++) {
+            $book = [
+                'user_id' => 1,
+                'item_name' => "Book Title No.{$i}",
+                'item_amount' => rand(100, 9999),
+                'item_number' => rand(1, 10),
+                'item_img' => "https://dummyimage.com/300x300/cccccc/ffffff&text=ダミー画像",
+                'published' => Carbon::today()->subDays(rand(1, 100))->format("Y-m-d"),
+                'item_category' => rand(1, 3),
+            ];
+            $books[] = $book;
         }
+        Book::insert($books);
     }
 }
