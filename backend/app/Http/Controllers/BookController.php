@@ -78,6 +78,27 @@ class BookController extends Controller
             ->toArray();
         dump($books);
 
+        echo ("<h2>練習４：値の取得、集計</h2>");
+        echo ("IDが33の金額");
+        $books = Book::where('id', 33)
+            ->value('item_amount');
+        dump($books);
+
+        echo ("数量が10個の本の名前一覧");
+        $books = Book::where('item_number', 10)
+            ->pluck('item_name');
+        dump($books);
+
+        echo ("数量が10個の本の名前をキーとした金額一覧");
+        $books = Book::where('item_number', 10)
+            ->pluck('item_amount', 'item_name');
+        dump($books);
+
+        echo ("数量が10個の本の数");
+        $books = Book::where('item_number', 10)
+            ->count('item_amount', 'item_name');
+        dump($books);
+
         exit;
     }
 
