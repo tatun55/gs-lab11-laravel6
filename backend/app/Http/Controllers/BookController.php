@@ -22,11 +22,15 @@ class BookController extends Controller
     public function index(Request $request)
     {
         // dd($request->all());
-        $books = Book::where('user_id', Auth::user()->id)
+        $query = Book::where('user_id', Auth::user()->id)
             ->orderBy('item_name', 'asc')
             // ->withTrashed()
-            ->withCount('comments')
-            ->paginate(10);
+            ->withCount('comments');
+
+        // ここに検索条件
+        // ...code
+
+        $books = $query->paginate(10);
         $tags = Tag::all();
         return view('books', [
             'books' => $books,
