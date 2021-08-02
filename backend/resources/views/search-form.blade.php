@@ -3,7 +3,6 @@
         検索フォーム
     </div>
     <form action="{{ url('/') }}" method="GET" class="form-horizontal">
-        @csrf
         <div class="form-row">
             <div class="form-group col-md-6">
                 <label for="book" class="control-label col-12">Book</label>

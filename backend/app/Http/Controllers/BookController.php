@@ -28,7 +28,15 @@ class BookController extends Controller
             ->withCount('comments');
 
         // ここに検索条件
-        // ...code
+        echo "value";
+        dump($request->item_name);
+        echo "gettype";
+        dump(gettype($request->item_name));
+        echo "isset";
+        dump(isset($request->item_name));
+        echo "!empty";
+        dump((bool)!empty($request->item_name));
+        exit;
 
         $books = $query->paginate(10);
         $tags = Tag::all();
