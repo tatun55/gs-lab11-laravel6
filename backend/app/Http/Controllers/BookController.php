@@ -21,22 +21,13 @@ class BookController extends Controller
     //本ダッシュボード表示
     public function index(Request $request)
     {
-        // dd($request->all());
         $query = Book::where('user_id', Auth::user()->id)
             ->orderBy('item_name', 'asc')
             // ->withTrashed()
             ->withCount('comments');
 
         // ここに検索条件
-        echo "value";
-        dump($request->item_name);
-        echo "gettype";
-        dump(gettype($request->item_name));
-        echo "isset";
-        dump(isset($request->item_name));
-        echo "!empty";
-        dump((bool)!empty($request->item_name));
-        exit;
+        isset($request->item_name) && $query->where('item_name', 'like', "%{$request->item_name}%");
 
         $books = $query->paginate(10);
         $tags = Tag::all();
