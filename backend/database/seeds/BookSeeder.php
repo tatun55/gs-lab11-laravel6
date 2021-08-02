@@ -22,7 +22,7 @@ class BookSeeder extends Seeder
         for ($i = 1; $i <= $qt; $i++) {
             $book = [
                 'user_id' => 1,
-                'item_name' => "Book Title No.{$i}",
+                'item_name' => sprintf("Book Title No.%03d", $i),
                 'item_amount' => rand(100, 9999),
                 'item_number' => rand(1, 10),
                 'item_img' => "https://dummyimage.com/300x300/cccccc/ffffff&text=ダミー画像",

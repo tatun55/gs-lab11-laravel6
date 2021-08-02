@@ -22,7 +22,7 @@ class BookController extends Controller
     public function index()
     {
         $books = Book::where('user_id', Auth::user()->id)
-            ->orderBy('created_at', 'asc')
+            ->orderBy('item_name', 'asc')
             // ->withTrashed()
             ->withCount('comments')
             ->paginate(10);
