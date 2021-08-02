@@ -70,8 +70,7 @@
     </form>
 </div>
 
-
-
+@include('search-form')
 
 <!-- Book: 既に登録されてる本のリスト -->
 <!-- 現在の本 -->

@@ -19,8 +19,9 @@ use Illuminate\Support\Facades\DB;
 class BookController extends Controller
 {
     //本ダッシュボード表示
-    public function index()
+    public function index(Request $request)
     {
+        // dd($request->all());
         $books = Book::where('user_id', Auth::user()->id)
             ->orderBy('item_name', 'asc')
             // ->withTrashed()
