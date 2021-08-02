@@ -6,7 +6,7 @@
         <div class="form-row">
             <div class="form-group col-md-6">
                 <label for="book" class="control-label col-12">Book</label>
-                <input type="text" name="item_name" class="form-control">
+                <input type="text" name="item_name" class="form-control" value="{{ request()->item_name }}">
             </div>
 
             <div class="form-group col-md-3">
