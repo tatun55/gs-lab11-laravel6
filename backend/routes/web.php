@@ -1,6 +1,8 @@
 <?php
 
 Auth::routes(['verify' => true]);
+Route::get('login/{provider}', 'SocialLoginController@redirect');
+Route::get('login/{provider}/callback', 'SocialLoginController@Callback');
 Route::group(['middleware' => ['verified']], function () {
     Route::get('/', 'BookController@index')->name('home');
     Route::resource('books', BookController::class, ['except' => ['index', 'create']]);
