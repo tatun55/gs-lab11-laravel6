@@ -11,11 +11,11 @@
 
             <div class="form-group col-md-3">
                 <label for="amount" class="control-label col-12">金額下限</label>
-                <input type="text" name="item_amount_from" class="form-control">
+                <input type="text" name="item_amount_from" class="form-control" value="{{ request()->item_amount_from }}">
             </div>
             <div class="form-group col-md-3">
                 <label for="amount" class="control-label col-12">金額上限</label>
-                <input type="text" name="item_amount_to" class="form-control">
+                <input type="text" name="item_amount_to" class="form-control" value="{{ request()->item_amount_to }}">
             </div>
             <div class="form-group col-md-3">
                 <label for="amount" class="control-label col-12">数下限</label>
