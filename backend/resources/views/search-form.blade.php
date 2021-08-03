@@ -47,7 +47,7 @@
                 <div class="form-group container row">
                     @foreach($tags as $tag)
                         <label class="control-label col-12 col-sm-4">
-                            <input type="checkbox" name="tags[]" value="{{ $tag->id }}">{{ $tag->name }}
+                            <input type="checkbox" name="tags[]" value="{{ $tag->id }}" {{ request()->tags && in_array($tag->id, request()->tags) ? "checked" : "" }}>{{ $tag->name }}
                         </label>
                     @endforeach
                 </div>
