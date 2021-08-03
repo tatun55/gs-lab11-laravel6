@@ -37,9 +37,9 @@
                 <label for="item_category" class="control-label col-12">カテゴリ</label>
                 <select class="form-control" name="item_category">
                     <option value="">選択なし</option>
-                    <option value="1">文芸・評論</option>
-                    <option value="2">ノンフィクション</option>
-                    <option value="3">ビジネス・経済</option>
+                    <option value="1" {{ request()->item_category === "1" ? "selected" : "" }}>文芸・評論</option>
+                    <option value="2" {{ request()->item_category === "2" ? "selected" : "" }}>ノンフィクション</option>
+                    <option value="3" {{ request()->item_category === "3" ? "selected" : "" }}>ビジネス・経済</option>
                 </select>
             </div>
             <div class="form-group col-md-6">
