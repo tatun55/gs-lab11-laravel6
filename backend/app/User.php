@@ -2,9 +2,11 @@
 
 namespace App;
 
+use App\Jobs\VerifyEmailJob;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Auth\Notifications\VerifyEmail;
 
 class User extends Authenticatable implements MustVerifyEmail
 {
@@ -40,5 +42,10 @@ class User extends Authenticatable implements MustVerifyEmail
     public function profile()
     {
         return $this->hasOne('App\UserProfile');
+    }
+
+    public function sendEmailVerificationNotification()
+    {
+        VerifyEmailJob::dispatch($this);
     }
 }
