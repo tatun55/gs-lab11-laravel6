@@ -27,11 +27,11 @@
             </div>
             <div class="form-group col-md-3">
                 <label for="published" class="control-label col-12">公開日(ここから)</label>
-                <input type="date" name="published_from" class="form-control">
+                <input type="date" name="published_from" class="form-control" value="{{ request()->published_from }}">
             </div>
             <div class="form-group col-md-3">
                 <label for="published" class="control-label col-12">公開日(ここまで)</label>
-                <input type="date" name="published_to" class="form-control">
+                <input type="date" name="published_to" class="form-control" value="{{ request()->published_to }}">
             </div>
             <div class="form-group col-md-6">
                 <label for="item_category" class="control-label col-12">カテゴリ</label>

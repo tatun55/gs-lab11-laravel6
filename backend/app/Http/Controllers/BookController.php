@@ -32,6 +32,8 @@ class BookController extends Controller
         isset($request->item_amount_to) && $query->where('item_amount', '<=', $request->item_amount_to);
         isset($request->item_number_from) && $query->where('item_number', '>=', $request->item_number_from);
         isset($request->item_number_to) && $query->where('item_number', '<=', $request->item_number_to);
+        isset($request->published_from) && $query->whereDate('published', '>=', $request->published_from);
+        isset($request->published_to) && $query->whereDate('published', '<=', $request->published_to);
 
         $books = $query->paginate(10);
         $tags = Tag::all();
