@@ -37,7 +37,7 @@
             <div class="form-group col-md-6">
                 <label for="item_category" class="control-label col-12">カテゴリ</label>
                 <select class="form-control" name="item_category">
-                    <option value="0">選択なし</option>
+                    <option value="">選択なし</option>
                     <option value="1">文芸・評論</option>
                     <option value="2">ノンフィクション</option>
                     <option value="3">ビジネス・経済</option>
