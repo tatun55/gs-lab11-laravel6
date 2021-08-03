@@ -19,11 +19,11 @@
             </div>
             <div class="form-group col-md-3">
                 <label for="amount" class="control-label col-12">数下限</label>
-                <input type="text" name="item_number_from" class="form-control">
+                <input type="text" name="item_number_from" class="form-control" value="{{ request()->item_number_from }}">
             </div>
             <div class="form-group col-md-3">
                 <label for="amount" class="control-label col-12">数上限</label>
-                <input type="text" name="item_number_to" class="form-control">
+                <input type="text" name="item_number_to" class="form-control" value="{{ request()->item_number_to }}">
             </div>
             <div class="form-group col-md-3">
                 <label for="published" class="control-label col-12">公開日(ここから)</label>
