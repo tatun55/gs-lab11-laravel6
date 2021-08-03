@@ -83,3 +83,8 @@ services:
       - 8080:80
     volumes:
       - /sessions
+
+  mail:
+    image: mailhog/mailhog:latest
+    ports:
+      - "8025:8025"
