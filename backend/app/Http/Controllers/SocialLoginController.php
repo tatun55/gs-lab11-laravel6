@@ -17,14 +17,17 @@ class SocialLoginController extends Controller
     public function callback($provider)
     {
         $userSocial = Socialite::driver($provider)->user();
-        $user = User::create([
-            'name' => $userSocial->getName(),
-            'email' => $userSocial->getEmail(),
-            'email_verified_at' => now(),
-            'provider' => $provider,
-            'provider_id' => $userSocial->getId(),
-            'image' => $userSocial->getAvatar(),
-        ]);
+        $user = User::where('email', $userSocial->getEmail())->first();
+        if (!$user) {
+            $user = User::create([
+                'name' => $userSocial->getName(),
+                'email' => $userSocial->getEmail(),
+                'email_verified_at' => now(),
+                'provider' => $provider,
+                'provider_id' => $userSocial->getId(),
+                'image' => $userSocial->getAvatar(),
+            ]);
+        }
         Auth::login($user);
         return redirect('/');
     }

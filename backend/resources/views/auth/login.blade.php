@@ -4,6 +4,7 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
+            @include('social-login')
             <div class="card">
                 <div class="card-header">{{ __('ログイン') }}</div>
 
@@ -57,7 +58,7 @@
                                     {{ __('ログイン') }}
                                 </button>
 
-                                @if (Route::has('password.request'))
+                                @if(Route::has('password.request'))
                                     <a class="btn btn-link" href="{{ route('password.request') }}">
                                         {{ __('パスワードを忘れましたか？') }}
                                     </a>
