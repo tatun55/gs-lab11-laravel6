@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Laravel\Socialite\Facades\Socialite;
 
 class SocialLoginController extends Controller
@@ -14,7 +16,16 @@ class SocialLoginController extends Controller
 
     public function callback($provider)
     {
-        $userSocial = Socialite::driver($provider)->stateless()->user();
-        dd($userSocial);
+        $userSocial = Socialite::driver($provider)->user();
+        $user = User::create([
+            'name' => $userSocial->getName(),
+            'email' => $userSocial->getEmail(),
+            'email_verified_at' => now(),
+            'provider' => $provider,
+            'provider_id' => $userSocial->getId(),
+            'image' => $userSocial->getAvatar(),
+        ]);
+        Auth::login($user);
+        return redirect('/');
     }
 }
