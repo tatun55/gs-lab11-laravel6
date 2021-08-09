@@ -55,6 +55,7 @@ class BookController extends Controller
     //更新画面
     public function edit(Book $book)
     {
+        Auth::user()->id !== $book->user_id && abort(403);
         $bookComments = BookComment::where('book_id', $book->id)->get();
         $tags = Tag::all();
         $checkedTags = $book->tags()->pluck('tags.id')->toArray();
@@ -69,6 +70,7 @@ class BookController extends Controller
     //更新
     public function update(BookRequest $request, Book $book)
     {
+        Auth::user()->id !== $book->user_id && abort(403);
         Auth::user()->role === 'admin' && abort(403);
         $request->merge([
             'user_id' => Auth::user()->id,
@@ -82,6 +84,7 @@ class BookController extends Controller
     //登録
     public function store(BookRequest $request)
     {
+        Auth::user()->id !== $book->user_id && abort(403);
         Auth::user()->role === 'admin' && abort(403);
         //file 取得
         $file = $request->file('item_img'); //file が空かチェック
@@ -118,6 +121,7 @@ class BookController extends Controller
     //削除処理
     public function destroy(Book $book)
     {
+        Auth::user()->id !== $book->user_id && abort(403);
         Auth::user()->role === 'admin' && abort(403);
         $book->delete();
         return redirect('/');
