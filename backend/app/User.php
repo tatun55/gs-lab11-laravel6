@@ -44,6 +44,11 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->hasOne('App\UserProfile');
     }
 
+    public function books()
+    {
+        return $this->hasMany('App\Book');
+    }
+
     public function sendEmailVerificationNotification()
     {
         VerifyEmailJob::dispatch($this);
