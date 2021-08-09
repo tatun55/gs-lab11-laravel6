@@ -10,3 +10,6 @@ Route::group(['middleware' => ['verified']], function () {
     Route::put('me/{user}', 'UserProfileController@upsert');
     Route::resource('books.comments', BookCommentController::class, ['only' => ['store', 'destroy']])->shallow();
 });
+
+// admin
+Route::resource('admin/users', UserController::class, ['only' => ['index', 'show']]);
