@@ -12,4 +12,6 @@ Route::group(['middleware' => ['verified']], function () {
 });
 
 // admin
-Route::resource('admin/users', UserController::class, ['only' => ['index', 'show']]);
+Route::group(['middleware' => ['verified']], function () {
+    Route::resource('admin/users', UserController::class, ['only' => ['index', 'show']]);
+});
