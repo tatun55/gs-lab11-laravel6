@@ -21,10 +21,11 @@ class BookController extends Controller
     //本ダッシュボード表示
     public function index(Request $request)
     {
-        $query = Book::where('user_id', Auth::user()->id)
-            ->orderBy('item_name', 'asc')
+        $query = Book::orderBy('item_name', 'asc')
             // ->withTrashed()
             ->withCount('comments');
+
+        Auth::user()->role === 'user' && $query->where('user_id', Auth::user()->id);
 
         // ここに検索条件
         isset($request->item_name) && $query->where('item_name', 'like', "%{$request->item_name}%");

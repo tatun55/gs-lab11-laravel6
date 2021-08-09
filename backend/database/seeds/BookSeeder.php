@@ -21,7 +21,7 @@ class BookSeeder extends Seeder
         $bookComments = [];
         for ($i = 1; $i <= $qt; $i++) {
             $book = [
-                'user_id' => 1,
+                'user_id' => rand(1, 2),
                 'item_name' => sprintf("Book Title No.%03d", $i),
                 'item_amount' => rand(100, 9999),
                 'item_number' => rand(1, 10),
