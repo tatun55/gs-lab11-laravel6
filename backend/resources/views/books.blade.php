@@ -109,7 +109,7 @@
                                     {{ csrf_field() }}
                                     {{ method_field('DELETE') }}
 
-                                    <button type="submit" class="btn btn-danger">
+                                    <button type="submit" class="btn btn-danger" {{ auth()->user()->role === 'admin' ? "disabled" : "" }}>
                                         削除
                                     </button>
                                 </form>

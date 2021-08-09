@@ -54,7 +54,7 @@
 
             <!-- Saveボタン/Backボタン -->
             <div class="well well-sm">
-                <button type="submit" class="btn btn-primary">Save</button>
+                <button type="submit" class="btn btn-primary" {{ auth()->user()->role === 'admin' ? "disabled" : "" }}>Save</button>
                 <a class="btn btn-link pull-right" href="{{ url('/') }}">
                     Back
                 </a>

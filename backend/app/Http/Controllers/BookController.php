@@ -69,6 +69,7 @@ class BookController extends Controller
     //更新
     public function update(BookRequest $request, Book $book)
     {
+        Auth::user()->role === 'admin' && abort(403);
         $request->merge([
             'user_id' => Auth::user()->id,
         ]);
@@ -81,6 +82,7 @@ class BookController extends Controller
     //登録
     public function store(BookRequest $request)
     {
+        Auth::user()->role === 'admin' && abort(403);
         //file 取得
         $file = $request->file('item_img'); //file が空かチェック
         if (!empty($file)) {
@@ -116,6 +118,7 @@ class BookController extends Controller
     //削除処理
     public function destroy(Book $book)
     {
+        Auth::user()->role === 'admin' && abort(403);
         $book->delete();
         return redirect('/');
     }
