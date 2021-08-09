@@ -16,7 +16,10 @@ class UserController extends Controller
     public function index()
     {
         auth()->user()->role !== 'admin' && abort(403);
-        return "index";
+        $users = User::withCount('books')->paginate(10);
+        return view('users', [
+            'users' => $users,
+        ]);
     }
 
     /**
@@ -28,6 +31,6 @@ class UserController extends Controller
     public function show(User $user)
     {
         auth()->user()->role !== 'admin' && abort(403);
-        return "show";
+        dd($user);
     }
 }
